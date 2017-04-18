@@ -37,7 +37,7 @@ def get_url(endpoint, start):
 
 def sync_type(type, endpoint, replicationKey):
     schema = load_schema(type)
-    singer.write_schema(endpoint, schema, [replicationKey])
+    singer.write_schema(type, schema, [replicationKey])
 
     url = get_url(endpoint, get_start(type).strftime("%Y-%m-%d"))
 
@@ -53,7 +53,7 @@ def sync_type(type, endpoint, replicationKey):
             row["date"] = dateparser.parse(row["date"]).isoformat() + "Z";
         if row.get("rating"):
             row["rating"] = int(row["rating"])
-        singer.write_record(endpoint, row)
+        singer.write_record(type, row)
 
     if finalRow != None:
         utils.update_state(STATE, type, finalRow['date'])
