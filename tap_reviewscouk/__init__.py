@@ -35,7 +35,7 @@ def get_start(key):
 def get_url(endpoint, start):
     return BASE_URL.format(endpoint, CONFIG['store'], CONFIG['apikey'], start)
 
-def sync_type(type, endpoint, replicationKey, date_fields=None):
+def sync_type(type, endpoint, replicationKey):
     schema = load_schema(type)
     singer.write_schema(endpoint, schema, [replicationKey])
 
@@ -49,10 +49,10 @@ def sync_type(type, endpoint, replicationKey, date_fields=None):
     finalRow = None
     for row in resp.json():
         finalRow = row
-        if date_fields:
-            for date_field in date_fields:
-                if row.get(date_field):
-                    row[date_field] = dateparser.parse(row[date_field]).isoformat() + "Z";
+        if row.get("date"):
+            row["date"] = dateparser.parse(row["date"]).isoformat() + "Z";
+        if row.get("rating"):
+            row["rating"] = int(row["rating"])
         singer.write_record(endpoint, row)
 
     if finalRow != None:
@@ -61,7 +61,7 @@ def sync_type(type, endpoint, replicationKey, date_fields=None):
 def do_sync():
     LOGGER.info("Starting sync")
 
-    sync_type("merchant_reviews", "merchant.json", "date", ["date"])
+    sync_type("merchant_reviews", "merchant.json", "date")
     # TODO: the schema for theis needs determining:
     #sync_type("product_reviews", "product.json", "date", ["date"])
 
