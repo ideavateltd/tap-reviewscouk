@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": ["null", "string"]
+    },
+    "rating": {
+      "type": ["null", "integer"]
+    },
+    "review": {
+      "type": ["null", "string"]
+    },
+    "email": {
+      "type": ["null", "string"]
+    },
+    "date": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "branch": {
+      "type": ["null", "string"]
+    },
+    "order_id": {
+      "type": ["null", "string"]
+    }
+  }
+}
