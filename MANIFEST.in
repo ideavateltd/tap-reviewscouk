@@ -1,2 +1,2 @@
-include LICENSE
+include LICENSE.md
 include tap_reviewscouk/schemas/*.json
