@@ -10,7 +10,7 @@ setup(name='tap-reviewscouk',
       classifiers=['Programming Language :: Python :: 3 :: Only'],
       py_modules=['tap_reviewscouk'],
       install_requires=[
-          'requests==2.13.0',
+          'requests>=2.13.0',
           'singer-python>=1.4.2',
       ],
       entry_points='''
