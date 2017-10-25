@@ -42,7 +42,6 @@ def sync_type(type, endpoint, replicationKey):
     url = get_url(endpoint, get_start(type).strftime("%Y-%m-%d"))
 
     req = requests.Request("GET", url=url).prepare()
-    LOGGER.info("GET {}".format(req.url))
     resp = SESSION.send(req)
     resp.raise_for_status()
 
