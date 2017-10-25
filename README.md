@@ -1,6 +1,7 @@
 # tap-reviewscouk
 
 A singer.io tap for extracting data from reviews.co.uk API, written in python 3.
+
 Author: Hugh Nimmo-Smith (hugh@onedox.com)
 
 ## Limitations
